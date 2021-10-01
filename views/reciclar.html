@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <title>GCycle - Lojas</title>
+</head>
+
+<body>
+    <main class="d-flex">
+        <h1 class="visually-hidden">Menu Lateral</h1>
+        <div class="sticky-top d-flex flex-column flex-shrink-0 p-3 text-white bg-dark"
+            style="width: 280px; height: 100vh;">
+            <a href="logado" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <svg class="bi me-2" width="40" height="32">
+                    <use xlink:href="#" />
+                </svg>
+                <span class="fs-4">Menu</span>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <a href="logado" class="nav-link text-white" aria-current="page">
+                        <svg class="bi me-2" width="16" height="16">
+                            <use xlink:href="#home" />
+                        </svg>
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link active text-white">
+                        <svg class="bi me-2" width="16" height="16">
+                            <use xlink:href="#table" />
+                        </svg>
+                        Reciclar
+                    </a>
+                </li>
+                <li>
+                    <a href="resgateProdutos" class="nav-link text-white">
+                        <svg class="bi me-2" width="16" height="16">
+                            <use xlink:href="#grid" />
+                        </svg>
+                        Resgatar Produtos
+                    </a>
+                </li>
+                <li>
+                    <a href="extrato" class="nav-link text-white">
+                        <svg class="bi me-2" width="16" height="16">
+                            <use xlink:href="#grid" /></svg>
+                        Extrato
+                    </a>
+                </li>
+            </ul>
+            <hr>
+            <div class="dropdown">
+                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+                    id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                    <strong>
+                        <%=nome %>
+                    </strong>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                    <li><a class="dropdown-item" href="#">Configurações</a></li>
+                    <li><a class="dropdown-item" href="#">Perfil</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="sair">Sair</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="">
+
+            <section class="d-flex justify-content-center pb-5 pt-5 flex-wrap ">
+                <% for (let i=0; i<reciclados.length; i++) { %>
+                    <div class="card m-3" style="width: 18rem;">
+                        <img src="img/expand.svg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <%= reciclados[i].nome %>
+                            </h5>
+                            <p class="card-text">
+                                <%= reciclados[i].tipo %>
+                            </p>
+                            <h5 class="card-text">
+                                <%= reciclados[i].ponto %> pontos
+                            </h5>
+                            <a href="#" class="btn btn-primary " data-bs-toggle="modal"
+                                data-bs-target="#exampleModal<%= i %>">Reciclar</a>
+                        </div>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal<%= i %>" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <form action="api/reciclagems/new" method="post">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Reciclar o produto abaixo</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>
+                                            <img src="img/expand.svg" class="card-img-top w-50" alt="...">
+                                            <br>
+                                        <p class="recid" name="RecicladoId" hidden="true">
+                                            <%= reciclados[i].id %>
+                                        </p>
+                                        <p class="recid" name="UsuarioId" hidden="true">
+                                            <%= userId %>
+                                        </p>
+                                        <p>
+                                            <%= reciclados[i].nome %>
+                                        </p>
+                                        <br>
+                                        <form
+                                            oninput="qtdPonto.value=parseInt(pt.value)*parseInt(exampleInputNumber1.value)">
+                                        </form>
+                                        <p id="pt">
+                                            <%= reciclados[i].ponto %> pontos/un
+                                        </p>
+                                        <div class="form-group">
+                                            <label for="exampleInputNumber1">Quantidade de material</label>
+                                            <input type="number" name="qtdReciclado" class="form-control"
+                                                id="exampleInputNumber1" placeholder="Quantidade">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleOutputNumber1">Total de Pontos</label>
+                                            <output type="number" name="qtdPonto" class="form-control"
+                                                id="exampleOutputNumber1" placeholder="Quantidade">
+                                        </div>
+                            </form>
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Trocar</button>
+                        </div>
+                    </div>
+                    </form>
+        </div>
+        </div>
+        <%}%>
+
+            </section>
+            <nav class="d-flex justify-content-center" aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </nav>
+            </div>
+            <!-- Button trigger modal -->
+
+
+    </main>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+        </script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
+    -->
+</body>
+
+</html>

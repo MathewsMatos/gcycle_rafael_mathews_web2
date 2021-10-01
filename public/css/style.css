@@ -1,0 +1,25 @@
+.card-posicao-imagem {
+    object-fit: cover;
+    height: 200px;
+}
+.cor-azul {
+    background: #005be8;
+    
+}
+
+.cor-verde{
+    background-color: #3d5459;
+}
+
+.color-white {
+    color: white;
+}
+
+.tamanho-card {
+    height: 250px;
+    width: 25%;
+}
+
+.recid {
+    display: none;
+}

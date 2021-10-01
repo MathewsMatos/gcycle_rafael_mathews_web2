@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <title>GCycle - Lojas</title>
+</head>
+
+<body>
+  <%- include('partials/header.html') %>
+    <main>
+      <div class="container ">
+        <h2 class="text-center">Nossas estações</h2>
+        
+        <div class="d-flex justify-content-center row row-cols-xl-4 row-cols-md-3 row-cols-sm-2 row-cols-2">
+          <% for (let i=0; i<estacaos.length; i++) { %>
+          <div class="m-3">
+            <div class="card" style="max-width: 18rem;">
+              <img src="/img/expand.svg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title"><%=estacaos[i].nome%></h5>
+                <p class="card-text">Endereço: <%=estacaos[i].endereco%></p>
+                <a href="#" class="btn btn-primary">Acesse no maps</a>
+              </div>
+            </div>
+          </div>
+          <%}%>
+        </div>
+        
+      </div>
+    </main>
+    <%- include('partials/footer.html') %>
+
+      <!-- Optional JavaScript; choose one of the two! -->
+
+      <!-- Option 1: Bootstrap Bundle with Popper -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+
+      <!-- Option 2: Separate Popper and Bootstrap JS -->
+      <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
+    -->
+</body>
+
+</html>
